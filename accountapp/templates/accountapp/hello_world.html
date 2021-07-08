@@ -6,6 +6,16 @@
       <div style = 'margin: 2rem; text-align: center'>
         <H1>METHOD</H1>
 
+{#어느 경로로 요청을 보내게 될지의 주소#}
+          <form action="/accounts/hello_world/" method="post">
+              {%  csrf_token %}
+              <input type="submit" class="px-5 btn btn-outline-primary">
+
+
+          </form>
+
+
+
         <H3>{{ text }}</H3>
       </div>
 
