@@ -7,3 +7,5 @@ app_name = 'accountapp'
 urlpatterns = [
     path('hello_world/', hello_world, name='hello_world')
 ]
+
+#app >name으로
