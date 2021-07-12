@@ -15,9 +15,9 @@
 
           </form>
 
-
-{#객체안의 텍스트로 뽑아줌#}
-        <H3>{{ hello_world_output.text }}</H3>
+          {% for hello_world in hello_world_list %}
+              <H3>{{ hello_world.text }}</H3>
+          {% endfor %}
       </div>
 
-{%  endblock %}
+{% endblock %}
