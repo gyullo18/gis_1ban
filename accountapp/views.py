@@ -1,8 +1,11 @@
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView
 
 from accountapp.models import HelloWorld
 
@@ -14,7 +17,7 @@ def hello_world(request):
         temp = request.POST.get('hello_world_input')
 
         new_hello_world = HelloWorld()
-        new_hello_world.text = temp
+        new_hello_world.text = temp #문제가 생기면 중단점을 잡고 확인을 해야함
         new_hello_world.save()
 
         hello_world_list = HelloWorld.objects.all()
@@ -26,4 +29,11 @@ def hello_world(request):
         return render(request, 'accountapp/hello_world.html',
                       context={'hello_world_list': hello_world_list})
 
-
+#7/12
+#crud start
+#create view 상속
+class AccountCreateView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    success_url = reverse_lazy('accountapp:hello_world')#클래스에서 리버스를 쓰기위함 why?Class와 Funtion은 불러오는 동선이 달라서 but 어카운트 앱에서 헬로월드로 가는건 같음
+    template_name = 'accountapp/create.html'#create.html만드는 건 나중에
