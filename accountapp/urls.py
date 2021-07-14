@@ -12,7 +12,7 @@ urlpatterns = [
          name='login'),
 
     path('Logout/', LogoutView.as_view(template_name='accountapp/Logout.html'),
-         name='logput'),
+         name='logout'),
 
     path('create/', AccountCreateView.as_view(), name='create')#클래스를 함수로 뱉어주는 메서드 #라우트
 ]
