@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
-from accountapp.views import hello_world, AccountCreateView
+from accountapp.views import hello_world, AccountCreateView, AccountDetailView
 
 app_name = 'accountapp'
 
@@ -14,7 +14,10 @@ urlpatterns = [
     path('Logout/', LogoutView.as_view(template_name='accountapp/Logout.html'),
          name='logout'),
 
-    path('create/', AccountCreateView.as_view(), name='create')#클래스를 함수로 뱉어주는 메서드 #라우트
+    path('create/', AccountCreateView.as_view(), name='create'),#클래스를 함수로 뱉어주는 메서드 #라우트
+
+    #7/15
+    path('detail/<int:pk>', AccountDetailView.as_view(), name='detail'),
 ]
 
 #app >name으로

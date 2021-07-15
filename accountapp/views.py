@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from accountapp.models import HelloWorld
 
@@ -37,3 +37,9 @@ class AccountCreateView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('accountapp:hello_world')#클래스에서 리버스를 쓰기위함 why?Class와 Funtion은 불러오는 동선이 달라서 but 어카운트 앱에서 헬로월드로 가는건 같음
     template_name = 'accountapp/create.html'#create.html만드는 건 나중에
+
+#7/15
+class AccountDetailView(DetailView):
+    model = User
+    context_object_name = 'target_user'#객체 접근
+    template_name = 'accountapp/detail.html'
