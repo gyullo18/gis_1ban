@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render
 
 # Create your views here.
@@ -58,18 +58,22 @@ class AccountUpdateView(UpdateView):
 
     #7/19
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated :
+        #7/20
+        if request.user.is_authenticated and self.get_object() == request.user: #계정객체가 request를 보내는 유저 객체와 동일한지
             return super().get(request, *args, **kwargs) #유저가 들어와 있다면 부모의 메서드를 실행하라
 
         else :
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            #7/20
+            return HttpResponseForbidden() #금지된 곳으로 접근했다 = 두번째 객체로 delete/1 페이지들어가면 안들어가짐
 
     def post(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
+        #7/20
+        if request.user.is_authenticated and self.get_object() == request.user:
             return super().post(request, *args, **kwargs)  # 유저가 들어와 있다면 부모의 메서드를 실행하라
 
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            #7/20
+            return HttpResponseForbidden()
 
 
 #7/19
@@ -81,17 +85,17 @@ class AccountDeleteView(DeleteView):
 
     # 7/19
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and self.get_object() == request.user:
             return super().get(request, *args, **kwargs)  # 유저가 들어와 있다면 부모의 메서드를 실행하라
 
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
     def post(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and self.get_object() == request.user:
             return super().post(request, *args, **kwargs)  # 유저가 들어와 있다면 부모의 메서드를 실행하라
 
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
         #get, post 나중에 바꿀예정
