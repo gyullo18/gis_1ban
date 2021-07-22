@@ -136,10 +136,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' #스태틱구문을 이용해서 base.html을 가져온거 - 요청이 들어오면 스태틱 파일 디렉토리를 통해 제공
+#7/22
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #스태틱 파일들이 저장되는 바닥
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+#7/22
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
