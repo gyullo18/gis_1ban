@@ -21,3 +21,14 @@
     max-width: 500px;
     margin: 1rem 1.5rem;
 }
+/*7/26*/
+.profile_image{
+    width: 12rem;
+    height: 12rem;
+    border-radius: 20rem;      /*모서리를 얼마나 둥글게 할지*/
+    object-fit: cover;
+}
+
+.NNS_B {
+    font-family: 'NanumSquareB', cursive;
+}
