@@ -14,3 +14,8 @@ class ProfileCreateView(CreateView):
     template_name = 'profileapp/create.html'#프로필 생성페이지를 어떤html로 사용할지
 
     #라우팅 --- profileapp > urls
+#7/26
+    #부모에 있는 form_valid 호출
+    def form_valid(self, form):
+        form.instance.user = self.request.user #정상적인 유저 객체를 받아야함
+        return super().form_valid(form)
