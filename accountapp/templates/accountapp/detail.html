@@ -12,9 +12,11 @@
             <h2 class="NNS_B">
                 {{ target_user.profile.nickname }}
 {#7/28 링크 만들기#}
-                <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                    edit
-                </a>
+                    {% if user == target_user %}
+                        <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                            edit
+                        </a>
+                    {% endif %}
             </h2>
             <h5>{{ target_user.profile.message }}</h5>
         {% else %}

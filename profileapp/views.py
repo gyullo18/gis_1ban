@@ -1,11 +1,17 @@
 #7/26
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
 
+from profileapp.decorators import profile_ownership_required
 from profileapp.forms import ProfileCreationForm
 from profileapp.models import Profile
 
-
+#7/28
+#보안처리
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
 class ProfileCreateView(CreateView):
     #뭘 만들건지
     model = Profile #프로필 앱안의 모델
@@ -20,7 +26,11 @@ class ProfileCreateView(CreateView):
         form.instance.user = self.request.user #정상적인 유저 객체를 받아야함
         return super().form_valid(form)
 
+
 #7/28
+#login_required가 필요 없기 때문에 리스트로 하지않음
+@method_decorator(profile_ownership_required, 'get')
+@method_decorator(profile_ownership_required, 'post')
 class ProfileUpdateView(UpdateView):
     model = Profile
     form_class = ProfileCreationForm
@@ -29,3 +39,4 @@ class ProfileUpdateView(UpdateView):
     template_name = 'profileapp/update.html'
 
     #url 라우팅연결
+

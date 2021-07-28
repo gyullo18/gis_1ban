@@ -7,7 +7,8 @@
         <h4>Sign Up</h4>
     </div>
     <div>
-        <form action="{% url 'accountapp:create' %}" method="post">
+        <form action="{% url 'accountapp:create' %}"
+              enctype="multipart/form-data" method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
             <div class="m-4">
