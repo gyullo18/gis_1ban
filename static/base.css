@@ -32,3 +32,17 @@
 .NNS_B {
     font-family: 'NanumSquareB', cursive;
 }
+
+/*7/29*/
+.round_button {
+    color: black;
+    text-decoration: none;
+    box-shadow: 0 0 3px black;  /*그림자 위치들(처음2개) , 그림자의 크기, 색깔*/
+    border-radius: 20rem;
+    padding: 0.3rem; /*내부 공간*/
+}
+
+/*7/29 어떤 행동을 했을때 바뀌는 조건--round_button에 올렸을때*/
+.round_button:hover{
+    color: dimgray;
+}

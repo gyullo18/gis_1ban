@@ -13,7 +13,9 @@
                 {{ target_user.profile.nickname }}
 {#7/28 링크 만들기#}
                     {% if user == target_user %}
-                        <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                        <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}"
+                            {# 7/29#}
+                           class="material-icons round_button">
                             edit
                         </a>
                     {% endif %}
