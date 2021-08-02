@@ -4,12 +4,12 @@ from django.shortcuts import render
 
 #8/2
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
 
-
+#createview
 class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleCreationForm
@@ -21,3 +21,10 @@ class ArticleCreateView(CreateView):
     def form_valid(self, form):
         form.instance.writer = self.request.user
         return super().form_valid(form)
+
+#8/2 readview
+class ArticleDetailView(DetailView):
+    model = Article
+    context_object_name = 'target_article'
+    template_name = 'articleapp/detail.html'
+    #url 라우팅
