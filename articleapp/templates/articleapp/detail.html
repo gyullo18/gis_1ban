@@ -2,18 +2,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <div class="container">
-        <div>
+                       {#8/4 사진 중앙정렬#}
+    <div class="container text-center">
+        <div class="my-5">
             {#       제목/글쓴이/날짜        #}
-            <h1>{{ target_article.title }}</h1>
+               {#8/4제목 두껍게#}
+            <h1 class="NNS_B">{{ target_article.title }}</h1>
             <h4>{{ target_article.writer.profile.nickname }}</h4>
             <p>{{ target_article.created_at }}</p>
         </div>
-        <div>
+        <hr>
+        <div class="my-5">
                 {#     게시글 내용     #}
-            <img src="{{ target_article.image.url }}" alt="">
+            <img src="{{ target_article.image.url }}"
+                 alt=""
+                 class="article_image">
+
+            <div class="article_content">
             {{ target_article.content }}
+            </div>
+            {#    주인인 사람에게만 보이게 해주자        #}
+            {% if target_article.writer == user %}
             {#8/4#}
             <div>
                    {#  버튼만들기 #}
@@ -27,10 +36,13 @@
                     Delete
                 </a>
             </div>
+            {% endif %}
         </div>
-{#  div하나 더 추가후 댓글란란   #}
+        {#8/4#}
+        <hr>
+        <div>
+           {#댓       글#}
+        </div>
     </div>
-
-
 
 {% endblock %}
