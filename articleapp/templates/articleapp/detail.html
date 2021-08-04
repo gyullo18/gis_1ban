@@ -15,6 +15,14 @@
                 {#     게시글 내용     #}
             <img src="{{ target_article.image.url }}" alt="">
             {{ target_article.content }}
+            {#8/4#}
+            <div>
+                   {#  버튼만들기 #}
+                <a href="{% url 'articleapp:update' pk=target_article.pk %}"
+                    class="btn btn-success rounded-pill px-5">
+                    Update
+                </a>
+            </div>
         </div>
 {#  div하나 더 추가후 댓글란란   #}
 
