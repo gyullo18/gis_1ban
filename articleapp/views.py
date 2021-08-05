@@ -70,5 +70,5 @@ class ArticleListView(ListView):
     model = Article
     context_object_name = 'article_list'  #단일 객체였으므로 target.이었지만 리스트를 가져옴
     template_name = 'articleapp/list.html'
-    paginate_by = 20 #나중엔 줄임.
+    paginate_by = 2 #테스트용으로 줄인것
     #url 라우팅

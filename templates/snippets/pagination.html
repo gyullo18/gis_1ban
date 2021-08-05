@@ -1,0 +1,23 @@
+{#8/5#}
+{# 재사용이 가능한 코드들은 따로 빼서 snippets에 저장한 후 원할때 가져다 쓸 수 있게끔 구성한것#}
+    <div class="text-center" my-5>
+        {# 현재 페이지에서 이전 페이지가 있는지 확인을 한 후 -- #}
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}"
+            class="btn btn-secondary rounded-pill">
+            {{ page_obj.previous_page_number }}
+        </a>
+        {% endif %}
+         {# pagination이 될 버튼들을 만들어 주자 - 지금 페이지 넘버 #}
+            <a href="#"
+                class="btn btn-dark rounded-pill">
+                {{ page_obj.number }}
+            </a>
+        {# 다음 페이지가 있는지 확인을 하고 -- 있다면 get방식으로 넘겨줌 #}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"
+                class="btn btn-secondary rounded-pill">
+                {{ page_obj.next_page_number }}
+            </a>
+        {% endif %}
+    </div>

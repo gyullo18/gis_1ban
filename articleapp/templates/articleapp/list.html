@@ -40,4 +40,8 @@
     </div>
     <script src="{% static 'js/magicgrid.js' %}"></script>
 
+    {# 여기에 있던 div태그들을 templates > snippets > pagination으로 옮겨준다 #}
+    {% include 'snippets/pagination.html' %}
+
+
 {% endblock %}
