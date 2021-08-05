@@ -42,7 +42,7 @@
 
     {# 여기에 있던 div태그들을 templates > snippets > pagination으로 옮겨준다 #}
     {% include 'snippets/pagination.html' %}
-{# 8/5 #}
+{# 8/5 리스트에서 바로 게시물을 올릴 수 있게 creat버튼 설정 #}
     <div class="text-center my-5">
         <a href="{% url 'articleapp:create' %}"
             class="btn btn-dark rounded-pill material-icons">
