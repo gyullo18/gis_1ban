@@ -285,7 +285,8 @@ let magicGrid = new MagicGrid({
 //8/2
 var masonrys = document.getElementsByTagName("img")
 
-for(let i = 0; masonrys.length; i++) {
+//8/5 녹음 15분정도
+for(let i = 0; i < masonrys.length; i++) {
   masonrys[i].addEventListener('load', function () {
     magicGrid.positionItems();
   }, false)

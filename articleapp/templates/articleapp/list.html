@@ -8,11 +8,13 @@
     <style>
         .container div {
             width: 280px;
-            background-color: antiquewhite;
+            {# flex관련된거 확인한번 해보면 좋음 #}
             display: flex;
             justify-content: center;
             align-items: center;
-             border-radius: 1rem;
+            border-radius: 1rem;
+                flex-direction: column;
+                box-shadow: 0 0 1rem darkgray;
             }
 
 
@@ -23,46 +25,18 @@
     </style>
 
     <div class="container my-5">
-{#앞에 너비/뒤에 높이#}
-        <div class="item1">
-            <img src="https://picsum.photos/200/300">
-        </div>
-        <div class="item2">
-            <img src="https://picsum.photos/200/400">
-        </div>
-        <div class="item3">
-            <img src="https://picsum.photos/200/500">
-        </div>
-        <div class="item4">
-            <img src="https://picsum.photos/200/150">
-        </div>
-        <div class="item5">
-            <img src="https://picsum.photos/200/200">
-        </div>
-        <div class="item6">
-            <img src="https://picsum.photos/200/400">
-        </div>
-        <div class="item7">
-            <img src="https://picsum.photos/200/500">
-        </div>
-        <div class="item8">
-            <img src="https://picsum.photos/200/500">
-        </div>
-        <div class="item9">
-            <img src="https://picsum.photos/200/150">
-        </div>
-        <div class="item10">
-            <img src="https://picsum.photos/200/300">
-        </div>
-        <div class="item11">
-            <img src="https://picsum.photos/200/300">
-        </div>
-        <div class="item12">
-            <img src="https://picsum.photos/200/300">
-        </div>
-        <div class="item13">
-            <img src="https://picsum.photos/200/300">
-        </div>
+        {#  8/5 녹음 10분정도부터  #}
+        {% for article in article_list %}
+
+            <div>
+                <a href="{% url 'articleapp:detail' pk=article.pk %}">
+                    <img src="{{  article.image.url }}" alt="">
+                </a>
+                <span class="NNS_B" m-2>{{ article.title }}</span>
+            </div>
+
+        {% endfor %}
+
     </div>
     <script src="{% static 'js/magicgrid.js' %}"></script>
 

@@ -6,7 +6,7 @@ from django.shortcuts import render
 #8/2
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
@@ -65,5 +65,10 @@ class ArticleDeleteView(DeleteView):
     template_name = 'articleapp/delete.html'
     #url 라우팅
 
-
-
+#8/5 게시판 리스트뷰를 만들수 있는 로직.
+class ArticleListView(ListView):
+    model = Article
+    context_object_name = 'article_list'  #단일 객체였으므로 target.이었지만 리스트를 가져옴
+    template_name = 'articleapp/list.html'
+    paginate_by = 20 #나중엔 줄임.
+    #url 라우팅
