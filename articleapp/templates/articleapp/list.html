@@ -42,6 +42,17 @@
 
     {# 여기에 있던 div태그들을 templates > snippets > pagination으로 옮겨준다 #}
     {% include 'snippets/pagination.html' %}
+{# 8/5 #}
+    <div class="text-center my-5">
+        <a href="{% url 'articleapp:create' %}"
+            class="btn btn-dark rounded-pill material-icons">
+            brush
+        </a>
+        <a href="{% url 'articleapp:create' %}"
+            class="btn btn-outline-dark rounded-pill px-5">
+            Create Article
+        </a>
+    </div>
 
 
 {% endblock %}
