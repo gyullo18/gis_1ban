@@ -11,6 +11,10 @@
               enctype="multipart/form-data" method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
+            {#8/9일반 클라이언트들이 보지 않도록#}
+            <input type="hidden"
+                   name="article_pk"
+                   value="{{ target_article.pk }}">
             <div class="m-4">
                 <input type="submit" class="btn btn-dark rounded-pill px-5">
             </div>
