@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
+from django.views.generic.edit import FormMixin
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
@@ -15,6 +16,9 @@ from articleapp.models import Article
 #createview
 #8/4
 #로그인이 필요하다라는 인증과정 -- 장고 기본 제공
+from commentapp.forms import CommentCreationForm
+
+
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class ArticleCreateView(CreateView):
@@ -34,8 +38,11 @@ class ArticleCreateView(CreateView):
 
 #8/2 readview
 #아무나 들어갈 수 있어야함. -- 인증과정 x
-class ArticleDetailView(DetailView):
+#8/9 Mixin추가
+class ArticleDetailView(DetailView, FormMixin):
     model = Article
+    #creat 뷰처럼 뭔가를 만들수 있는 기능 할당됨 -- mixin으로 인해
+    form_class = CommentCreationForm
     context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
     #url 라우팅
