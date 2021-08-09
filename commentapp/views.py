@@ -1,14 +1,20 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
 
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DeleteView
 
+from commentapp.decorators import comment_ownership_required
 from commentapp.forms import CommentCreationForm
 from commentapp.models import Comment
 
 #8/9
+#인증과정 추가 -- 유저라는것을 식별하기 위해서는 로그인 되어있어야함
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
 class CommentCreateView(CreateView):
     model = Comment
     form_class = CommentCreationForm
@@ -27,6 +33,9 @@ class CommentCreateView(CreateView):
     #url 연결
 
 #8/9
+#보안처리 - 메서드 데코레이터 작성후
+@method_decorator(comment_ownership_required, 'get')
+@method_decorator(comment_ownership_required, 'post')
 class CommentDeleteView(DeleteView):
     model = Comment
     context_object_name = 'target_comment'
