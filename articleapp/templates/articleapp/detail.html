@@ -42,6 +42,26 @@
         <hr>
         <div class="text-center my-4">
             {#   8/9작성 댓글  #}
+            {#  8/9 댓글 시각화--1대1이 아닌 모든것을 가져오겠다#}
+            {#커스터마이징은 자기마음대로 해도 상관없지만 for문은 넣어주어야 함#}
+            {% for comment in target_article.comment.all %}
+                {# 외곽선= 실선#}
+                <div class="comment_box">
+                    <div>
+                        {# 작성자 + 언제 작성했는지#}
+                        <span style="font-size: 1.3rem;" class="NNS_B">
+                            {{ comment.writer.profile.nickname }}
+                        </span>
+                        <span>{{ comment.created_at }}</span>
+                    </div>
+                    <div class="my-2">
+                        {#내용 출력#}
+                        <p>{{ comment.content }}</p>
+                    </div>
+                </div>
+
+            {% endfor %}
+
             {% include 'commentapp/create.html' %}
         </div>
     </div>

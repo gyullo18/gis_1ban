@@ -60,3 +60,14 @@
     text-align: left;
     margin: 2rem 0;
 }
+
+/*8/9 댓글 관련 스타일*/
+.comment_box{
+    border: solid;
+    border-color: #06f3c4;
+    text-align: left;
+    border-radius: 1rem;
+    margin : 1rem 0;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
