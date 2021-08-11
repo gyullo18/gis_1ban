@@ -58,6 +58,16 @@
                         {#내용 출력#}
                         <p>{{ comment.content }}</p>
                     </div>
+                    {# 8/11 이 댓글의 작성자가 해당 유저가 맞는지 인증 과정#}
+                    {% if comment.writer == user %}
+                    {#  8/11   댓글 삭제 버튼 #}
+                    <div style="text-align: right">
+                        <a href="{% url 'commentapp:delete' pk=comment.pk  %}"
+                            class="btn btn-danger rounded-pill px-5">
+                            Delete
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
 
             {% endfor %}
