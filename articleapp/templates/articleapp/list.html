@@ -6,8 +6,16 @@
 {% block content %}
 
     <style>
+        {#8/12#}
+        .container {
+            padding: 0;
+            margin: 0 0;
+        }
+
         .container div {
-            width: 280px;
+            {#8/12 사진의 너비 조절 + 최대 크기 조절#}
+            width: 45%;
+                max-with: 200px;
             {# flex관련된거 확인한번 해보면 좋음 #}
             display: flex;
             justify-content: center;
@@ -24,7 +32,7 @@
             }
     </style>
 
-    <div class="container my-5">
+    <div class="container my-3">
         {#  8/5 녹음 10분정도부터  #}
         {% for article in article_list %}
 
