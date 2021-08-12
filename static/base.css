@@ -71,3 +71,11 @@
     padding: 1rem;
     font-size: 1.1rem;
 }
+
+/*8/12 500px이하의 기기에서는 이 css파일이 적용된다*/
+@media screen and (max-width: 500px) {
+    html {
+        /* defalut font-size = 16px */
+        font-size: 13px;
+    }
+}
