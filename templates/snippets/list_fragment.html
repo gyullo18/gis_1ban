@@ -1,0 +1,60 @@
+{#8/18#}
+{# articleapp > templates> articleapp > list #}
+{% load static %}
+
+    <style>
+        {#8/12#}
+        .container {
+            padding: 0;
+            margin: 0 0;
+        }
+
+        .container div {
+            {#8/12 사진의 너비 조절 + 최대 크기 조절#}
+            width: 45%;
+                max-with: 200px;
+            {# flex관련된거 확인한번 해보면 좋음 #}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1rem;
+                flex-direction: column;
+                box-shadow: 0 0 1rem darkgray;
+            }
+
+
+            div img {
+                width:100%;
+                border-radius: 1rem;
+            }
+    </style>
+
+    <div class="container my-3">
+
+        {% for article in article_list %}
+
+            <div>
+                <a href="{% url 'articleapp:detail' pk=article.pk %}">
+                    <img src="{{  article.image.url }}" alt="">
+                </a>
+                <span class="NNS_B" m-2>{{ article.title }}</span>
+            </div>
+
+        {% endfor %}
+
+    </div>
+    <script src="{% static 'js/magicgrid.js' %}"></script>
+
+    {# 여기에 있던 div태그들을 templates > snippets > pagination으로 옮겨준다 #}
+    {% include 'snippets/pagination.html' %}
+{# 8/5 리스트에서 바로 게시물을 올릴 수 있게 creat버튼 설정 #}
+    <div class="text-center my-5">
+        <a href="{% url 'articleapp:create' %}"
+            class="btn btn-dark rounded-pill material-icons">
+            brush
+        </a>
+        <a href="{% url 'articleapp:create' %}"
+            class="btn btn-outline-dark rounded-pill px-5">
+            Create Article
+        </a>
+    </div>
