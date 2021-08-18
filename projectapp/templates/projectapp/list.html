@@ -12,19 +12,20 @@
         }
 
         .container div {
-            width: 45%;
-                max-with: 200px;
+            {#임의의 크기에 대응할 필요가 없음 - 크기 삭제#}
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 1rem;
                 flex-direction: column;
-                box-shadow: 0 0 1rem darkgray;
             }
 
 
             div img {
-                width:100%;
+                width: 7rem;
+                height: 7rem;
+                {#비율에 맞춘 크기를 출력-왜곡되지 않음#}
+                object-fit: cover;
                 border-radius: 1rem;
             }
     </style>
@@ -37,8 +38,8 @@
                 <a href="{% url 'projectapp:detail' pk=project.pk %}">
                     <img src="{{  project.image.url }}" alt="">
                 </a>
-                {# 게시판 제목 출력#}
-                <span class="NNS_B" m-2>{{ project.name }}</span>
+                {# 게시판 제목 출력 -- 10까지의 글자 빼고는 ... #}
+                <span class="NNS_B" m-2>{{ project.name | truncatechars:10 }}</span>
             </div>
 
         {% endfor %}
