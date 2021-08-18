@@ -11,3 +11,8 @@ class Project(models.Model):
 
 # migration, mitrate
 #forms.py만들기
+
+    # 8/18
+    # 이 프로젝트의 이름을 str을 이용해 그대로 출력해주겠다. -- 몇번 게시판 객체가 아닌 게시판 이름이 선택됨.
+    def __str__(self):
+        return f'{self.name}'
