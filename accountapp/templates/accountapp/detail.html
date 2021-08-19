@@ -46,4 +46,9 @@
     {% endif %}
 </div>
 
+   {#8/19 mypage에서도 자신이 올린 게시글을 볼 수 있도록 만들자#}
+    <div>
+        {% include 'snippets/list_fragment.html' with article_list=object_list %}
+    </div>
+
 {% endblock %}

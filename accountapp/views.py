@@ -8,12 +8,16 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_reqired
 from accountapp.forms import AccountCreationForm
 from accountapp.models import HelloWorld
 
 #7/20 decorator
+from articleapp.models import Article
+
+
 @login_required(login_url=reverse_lazy('accountapp:login'))
 def hello_world(request):
     #7/19#로그인 되었는지 안되었는지 여부 is_auth~
@@ -49,10 +53,18 @@ class AccountCreateView(CreateView):
         return reverse('accountapp:detail', kwargs={'pk': self.object.pk})
 
 #7/15
-class AccountDetailView(DetailView):
+#8/19 project detailview와 같이 만들어줌
+class AccountDetailView(DetailView, MultipleObjectMixin):
     model = User
     context_object_name = 'target_user'#객체 접근
     template_name = 'accountapp/detail.html'
+
+    # 8/19
+    paginate_by = 20
+    # 8/19
+    def get_context_data(self, **kwargs):
+        article_list = Article.objects.filter(writer=self.object)
+        return super().get_context_data(object_list=article_list, **kwargs)
 
 #7/20 메서드에 적용하기 위한 decorator
 #메서드 데이터의 장점 - 리스트로 인자를 받을 수 있음
