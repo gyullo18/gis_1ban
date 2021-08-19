@@ -23,11 +23,12 @@
            class="btn btn-primary rounded-pill px-5">
             Subsrcibe
         </a>
-        {% endif %}
+        {% else %}
         <a href="{% url 'subscribeapp:subscribe' project_pk=target_project.pk %}"
            class="btn btn-secondary rounded-pill px-5">
             Unsubsrcibe
         </a>
+        {% endif %}
     </div>
     {% endif %}
     {# 8/18  #}
