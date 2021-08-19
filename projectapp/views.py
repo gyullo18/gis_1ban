@@ -14,6 +14,9 @@ from projectapp.models import Project
 #8/18 인증과정 -- 로그인 한 사람만 이용 가능하게
 #8/12 forms.py 작성 후 CD/L 시작
 #createview
+from subscribeapp.models import Subscription
+
+
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class ProjectCreateView(CreateView):
@@ -38,9 +41,24 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
     paginate_by = 20
     # 8/18
     def get_context_data(self, **kwargs):
+        # 8/19 구독 여부 확인
+        user = self.request.user
+        project = self.object
+
+        subscription = Subscription.objects.filter(user=user,
+                                                   project=project)
+        #8/19
+        #존재한다면 1로 설정
+        if subscription.exists():
+            subscription =1
+        else:
+            subscription=None
+
         # 어떤 게시글들을 넣어줄 것인가, 조건을 걸러내는 메서드 -- 그 게시판 내의 리스트들만 담아준다.
         article_list = Article.objects.filter(project=self.object)
-        return super().get_context_data(object_list=article_list, **kwargs)
+        return super().get_context_data(object_list=article_list,
+                                        subscription=subscription,#8/19
+                                        **kwargs)
 
 #8/18
 #listview 게시판 목록페이지
