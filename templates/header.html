@@ -16,6 +16,14 @@
                 Projects
             </a>
         </span>
+        {#  8/23 subscription으로 바로 갈 수 있는 버튼 - 로그인 되어 있을시 #}
+        {% if user.is_authenticated %}
+        <span>
+            <a href="{% url 'subscribeapp:list' %}">
+                Subscription
+            </a>
+        </span>
+        {% endif %}
 
 
         {% if not user.is_authenticated %}

@@ -5,8 +5,9 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, ListView
 
+from articleapp.models import Article
 from projectapp.models import Project
 from subscribeapp.models import Subscription
 
@@ -34,3 +35,19 @@ class SubscriptionView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return reverse('projectapp:detail', kwargs={'pk':kwargs['project_pk']})
 #로직 만들었으니 urls.py에서 라우팅해주어야함
+
+
+# 8/23 - 구독중인 project의 article만 걸러내는 작업
+# 구독을 한사람이기 때문에 로그인 되어있는지 확인 해주자
+@method_decorator(login_required, 'get')
+class SubscriptionListView(ListView):
+    model = Article
+    context_object_name = 'article_list'
+    template_name = 'subscribeapp/list.html'
+    paginate_by = 20
+
+    def get_queryset(self):
+        project_list = Subscription.objects.filter(user=self.request.user).values_list('project')
+        article_list = Article.objects.filter(project__in=project_list)
+        return article_list
+#url 라우팅

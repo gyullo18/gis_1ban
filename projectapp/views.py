@@ -41,18 +41,15 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
     paginate_by = 20
     # 8/18
     def get_context_data(self, **kwargs):
-        # 8/19 구독 여부 확인
+        # 8/23 구독 여부 확인
         user = self.request.user
         project = self.object
 
-        subscription = Subscription.objects.filter(user=user,
-                                                   project=project)
-        #8/19
-        #존재한다면 1로 설정
-        if subscription.exists():
-            subscription =1
+        if user.is_authenticated:
+            subscription = Subscription.objects.filter(user=user,
+                                                       project=project)
         else:
-            subscription=None
+            subscription = None
 
         # 어떤 게시글들을 넣어줄 것인가, 조건을 걸러내는 메서드 -- 그 게시판 내의 리스트들만 담아준다.
         article_list = Article.objects.filter(project=self.object)
