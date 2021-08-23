@@ -19,6 +19,9 @@ class Article(models.Model):
     content = models.TextField(null=True)
 
     created_at = models.DateField(auto_now_add=True, null=True)#언제 작성했는지에 대한 정보
+
+    # 8/23 좋아요 갯수에 해당하는 것(이 게시글이 생성되었을 때 기본 좋아요 갯수)
+    like = models.IntegerField(default=0)
     #모델 완성 - migration
 #forms.py 만들기
 
