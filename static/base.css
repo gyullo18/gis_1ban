@@ -79,3 +79,13 @@
         font-size: 13px;
     }
 }
+
+/*8/25 좋아요 버튼의 a태그*/
+a {
+    text-decoration: none;
+    color: black;
+}
+/*마우스가 올라가있을 때 적용되는 css*/
+a:hover {
+    color: black;
+}

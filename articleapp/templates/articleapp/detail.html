@@ -8,6 +8,17 @@
             {#       제목/글쓴이/날짜        #}
                {#8/4제목 두껍게#}
             <h1 class="NNS_B">{{ target_article.title }}</h1>
+            {# 8/23 좋아요 추가 #}
+            <div class="my-3">
+                <a href="{% url 'likeapp:article_like' article_pk=target_article.pk %}"
+                    class="material-icons"
+                    style="vertical-align: middle; color: #06f3c4">
+                     favorite
+                </a>
+                <span style="vertical-align: middle;">
+                {{ target_article.like }}
+                </span>
+            </div>
             <h4>{{ target_article.writer.profile.nickname }}</h4>
             <p>{{ target_article.created_at }}</p>
         </div>
