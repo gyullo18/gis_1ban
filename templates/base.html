@@ -8,6 +8,15 @@
 
 <hr>
 
+{# 8/25 어떠한 페이지에 있던간에 메시지를 보게 함 #}
+{% for message in messages %}
+    <div class="text-center">
+        <div class="btn btn-success rounded-pill px-5">
+            {{ message }}
+        </div>
+    </div>
+{% endfor %}
+
 {%  block content %}
 {% endblock %}
 
