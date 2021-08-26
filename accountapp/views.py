@@ -17,29 +17,6 @@ from accountapp.models import HelloWorld
 #7/20 decorator
 from articleapp.models import Article
 
-
-@login_required(login_url=reverse_lazy('accountapp:login'))
-def hello_world(request):
-    #7/19#로그인 되었는지 안되었는지 여부 is_auth~
-    #7/20if else지우기
-    if request.method == 'POST' :
-
-        # 임시데이터 작성
-        temp = request.POST.get('hello_world_input')
-
-        new_hello_world = HelloWorld()
-        new_hello_world.text = temp #문제가 생기면 중단점을 잡고 확인을 해야함
-        new_hello_world.save()
-
-        hello_world_list = HelloWorld.objects.all()
-#post #redirect #/accounts/hello_world/
-        return HttpResponseRedirect(reverse('accountapp:hello_world')) #어떤 앱 안에 있는 헬로 월드로 가라 #reverse로 redirect
-#get
-    else :
-        hello_world_list = HelloWorld.objects.all()
-        return render(request, 'accountapp/hello_world.html',
-                      context={'hello_world_list': hello_world_list})
-
 #7/12
 #crud start
 #create view 상속
@@ -90,6 +67,6 @@ class AccountUpdateView(UpdateView):
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
-    success_url = reverse_lazy('accountapp:hello_world')
+    success_url = reverse_lazy('articleapp:list')
     template_name = 'accountapp/delete.html'
 
