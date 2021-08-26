@@ -5,20 +5,20 @@
     </div>
     <div class = 'pragmatic_header_button'>
         {# 8/5 nav바 1번에 articles로 바로 갈수 있는 버튼 만들어 주기#}
-        <span>
+        <span class="mx-2">
             <a href="{% url 'articleapp:list' %}">
                 Articles
             </a>
         </span>
         {# 8/18 nav바 2번에 prjects로 바로 갈수 있는 버튼 만들어 주기#}
-        <span>
+        <span class="mx-2">
             <a href="{% url 'projectapp:list' %}">
                 Projects
             </a>
         </span>
         {#  8/23 subscription으로 바로 갈 수 있는 버튼 - 로그인 되어 있을시 #}
         {% if user.is_authenticated %}
-        <span>
+        <span class="mx-2">
             <a href="{% url 'subscribeapp:list' %}">
                 Subscription
             </a>
@@ -27,25 +27,25 @@
 
 
         {% if not user.is_authenticated %}
-        <span>
+        <span class="mx-2">
             <a href="{% url 'accountapp:login' %}">
                 Login
             </a>
         </span>
 
-        <span>
+        <span class="mx-2">
             <a href="{% url 'accountapp:create' %}">
                 SignUp
             </a>
         </span>
         {% else %}
 {#7/15#}
-        <span>
+        <span class="mx-2">
             <a href="{% url 'accountapp:detail' pk=user.pk %}">
                 MyPage
             </a>
         </span>
-        <span>
+        <span class="mx-2">
             <a href="{% url 'accountapp:logout' %}">
                 Logout
             </a>
