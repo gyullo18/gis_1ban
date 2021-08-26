@@ -28,9 +28,9 @@
             <img src="{{ target_article.image.url }}"
                  alt=""
                  class="article_image">
-
+            {# 8/26 | safe = WYG #}
             <div class="article_content">
-            {{ target_article.content }}
+                {{ target_article.content | safe }}
             </div>
             {#    주인인 사람에게만 보이게 해주자        #}
             {% if target_article.writer == user %}
