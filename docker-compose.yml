@@ -12,7 +12,7 @@ services:
     - 80:80
 
   django:
-    image: gis_1_django:4
+    image: gis_1_django:5
     networks:
       - gis_1_network
     secrets:
@@ -35,9 +35,9 @@ services:
       - MARIADB_ROOT_PASSWORD
     environment:
       MARIADB_DATABASE: django
-      MARIADB_USER: django
-      MARIADB_PASSWORD: pass1234
-      MARIADB_ROOT_PASSWORD: pass1234
+      MARIADB_USER_FILE: /run/secrets/MARIADB_USER
+      MARIADB_PASSWORD_FILE: /run/secrets/MARIADB_PASSWORD
+      MARIADB_ROOT_PASSWORD_FILE: /run/secrets/MARIADB_ROOT_PASSWORD
 
 networks:
   gis_1_network:
